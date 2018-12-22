@@ -14,9 +14,9 @@ last price:
 var xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    alert(this.responseText);
-    var myObj = JSON.parse(this.responseText);
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    alert(xmlhttp.responseText);
+    var myObj = JSON.parse(xmlhttp.responseText);
     document.getElementById("demo").innerHTML = myObj['result'].Last;
   }
 };
@@ -25,14 +25,14 @@ xmlhttp.send();
 var xmlhttp2 = new XMLHttpRequest();
 
 xmlhttp2.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
+  if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
    
-    var myObj2 = JSON.parse(this.responseText);
+    var myObj2 = JSON.parse(xmlhttp2.responseText);
     document.getElementById("demo2").innerHTML = myObj2['result'].Last;
   }
 };
-xmlhttp.open("GET", "https://coinpulse.io/api/v1/ticker/BMT_BTC", true);
-xmlhttp.send();
+xmlhttp2.open("GET", "https://coinpulse.io/api/v1/ticker/BMT_BTC", true);
+xmlhttp2.send();
 </script>
 
 
