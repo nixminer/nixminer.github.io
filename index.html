@@ -17,7 +17,7 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     alert(this.responseText);
     var myObj = JSON.parse(this.responseText);
-    document.getElementById("demo").innerHTML = myObj['result'].Last;
+    document.getElementById("demo").innerHTML = myObj['result'][0].Last;
   }
 };
 
@@ -28,7 +28,7 @@ xmlhttp2.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
    
     var myObj2 = JSON.parse(this.responseText);
-    document.getElementById("demo2").innerHTML = myObj2['result'].Last;
+    document.getElementById("demo2").innerHTML = myObj2['result'][0].Last;
   }
 };
 
