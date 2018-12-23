@@ -10,29 +10,22 @@ last price:
 last price:
 <p id="demo2"></p>
 
-<script>
-var xmlhttp = new XMLHttpRequest();
+<script> 
+var myList = document.querySelector('ul');
 
-xmlhttp.onreadystatechange = function() {
-  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    alert(xmlhttp.responseText);
-    var myObj = JSON.parse(xmlhttp.responseText);
-    document.getElementById("demo").innerHTML = myObj['result'].Last;
-  }
-};
-xmlhttp.open("GET", "https://coinpulse.io/api/v1/ticker/BMT_ETH", true);
-xmlhttp.send();
-var xmlhttp2 = new XMLHttpRequest();
+var myRequest = new Request('https://www.coinpulse.io/api/v1/ticker/BMT_ETH');
 
-xmlhttp2.onreadystatechange = function() {
-  if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-   
-    var myObj2 = JSON.parse(xmlhttp2.responseText);
-    document.getElementById("demo2").innerHTML = myObj2['result'].Last;
-  }
-};
-xmlhttp2.open("GET", "https://coinpulse.io/api/v1/ticker/BMT_BTC", true);
-xmlhttp2.send();
+fetch(myRequest)
+  .then(function(response) { return response.json(); })
+  .then(function(data) {
+    for (var i = 0; i < data.products.length; i++) {
+      var listItem = document.createElement('li');
+      listItem.innerHTML = '<strong>' + data.products[i].Name + '</strong> can be found in ' +
+                           data.products[i].Location +
+                           '. Cost: <strong>£' + data.products[i].Price + '</strong>';
+      myList.appendChild(listItem);
+    }
+  });
 </script>
 
 
