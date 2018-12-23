@@ -2,30 +2,15 @@
 <html>
 <body>
 
-<h2>bmt eth</h2>
-last price:
-<p id="demo"></p>
-<br>
-<h2>bmt btc</h2>
-last price:
-<p id="demo2"></p>
 
-<script> 
-var myList = document.querySelector('ul');
 
-var myRequest = new Request('https://www.coinpulse.io/api/v1/ticker/BMT_ETH');
+<script> fetch('https://api.github.com/orgs/nodejs')
+.then(response => response.json())
+.then(data => {
+  console.log(data) // Prints result from `response.json()` in getRequest
+})
+.catch(error => console.error(error))
 
-fetch(myRequest)
-  .then(function(response) { return response.json(); })
-  .then(function(data) {
-    for (var i = 0; i < data.products.length; i++) {
-      var listItem = document.createElement('li');
-      listItem.innerHTML = '<strong>' + data.products[i].Name + '</strong> can be found in ' +
-                           data.products[i].Location +
-                           '. Cost: <strong>£' + data.products[i].Price + '</strong>';
-      myList.appendChild(listItem);
-    }
-  });
 </script>
 
 
